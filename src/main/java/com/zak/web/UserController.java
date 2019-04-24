@@ -3,19 +3,17 @@ package com.zak.web;
 import com.zak.model.User;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.*;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
 
-    static Map<Long, User> userMap = Collections.synchronizedMap(new HashMap<>());
+    private static Map<Long, User> userMap = Collections.synchronizedMap(new HashMap<>());
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<User> getUserList(){
-        List<User> userList = new ArrayList<>(userMap.values());
-        return userList;
+        return new ArrayList<>(userMap.values());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
